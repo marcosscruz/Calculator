@@ -1,30 +1,30 @@
 let runningTotal = 0;
 let buffer = "0";
-let antesOperador;
+let previousOperator;
 
 const screen = document.querySelector('.screen');
 
-function buttonClick(valor) {
-    if (isNaN(valor)) {
-        handleSymbol(valor);
+function buttonClick(value) {
+    if (isNaN(value)) {
+        handleSymbol(value);
     } else {
-        handleNumber(valor);
+        handleNumber(value);
     }
     screen.innerText = buffer;
 }
 
-function handleSymbol(simbolo) {
-    switch (simbolo) {
+function handleSymbol(symbol) {
+    switch (symbol) {
         case 'C':
-            buffer = '0'
+            buffer = '0';
             runningTotal = 0;
             break;
         case '=':
-            if (antesOperador === null) {
+            if (previousOperator === null) {
                 return
             }
             flushOperation(parseInt(buffer));
-            antesOperador = null;
+            previousOperator = null;
             buffer = runningTotal;
             runningTotal = 0;
             break;
@@ -39,12 +39,12 @@ function handleSymbol(simbolo) {
         case '-':
         case '×':
         case '÷':
-            handleMath(simbolo);
+            handleMath(symbol);
             break;
     }
 }
 
-function handleMath(simbolo) {
+function handleMath(symbol) {
     if (buffer === '0') {
         return;
     }
@@ -56,33 +56,33 @@ function handleMath(simbolo) {
     } else {
         flushOperation(intBuffer);
     }
-    antesOperador = simbolo;
+    previousOperator = symbol;
     buffer = '0';
 }
 
 function flushOperation(intBuffer) {
-    if (antesOperador === '+') {
+    if (previousOperator === '+') {
         runningTotal += intBuffer;
-    } else if (antesOperador === '-') {
+    } else if (previousOperator === '-') {
         runningTotal -= intBuffer;
-    } else if (antesOperador === '×') {
+    } else if (previousOperator === '×') {
         runningTotal *= intBuffer;
-    } else if (antesOperador === '÷') {
+    } else if (previousOperator === '÷') {
         runningTotal /= intBuffer;
     }
 }
 
-function handleNumber(numString) {
+function handleNumber(numberString) {
     if (buffer === "0") {
-        buffer = numString;
+        buffer = numberString;
     } else {
-        buffer += numString;
+        buffer += numberString;
     }
 }
 
 function init() {
     document.querySelector('.calc-buttons').addEventListener('click', function (event) {
-        buttonClick(event.currentTarget.innerText);
+        buttonClick(event.target.innerText);
     })
 }
 
