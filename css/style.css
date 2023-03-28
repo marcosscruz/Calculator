@@ -14,7 +14,7 @@ html {
 
 body {
     align-items: center;
-    background: linear-gradient(320deg, #0026ff, #00fbff, #01ff9e);
+    background: #232323;
     display: flex;
     font-family: 'Dosis', sans-serif;
     font-display: swap;
@@ -108,9 +108,12 @@ body {
     position: fixed;
     bottom: 0;
     left: 0;
+    background-color: none;
+    color: #f1f1f1;
+    padding: 10px;
+    font-size: 14px;
 }
 
-.content {
-    font-style: italic;
-    font-size: small;
+.content a {
+    color: #ffc400;
 }
