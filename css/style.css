@@ -104,3 +104,13 @@ body {
     flex-basis: 75%;
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.content {
+    font-style: italic;
+    font-size: small;
+}
